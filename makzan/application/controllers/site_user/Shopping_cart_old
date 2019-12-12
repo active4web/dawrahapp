@@ -1,0 +1,77 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Shopping_cart extends CI_Controller {
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function add_to_cart(){
+		$data['user_data'] = $this->session->userdata('user_data');
+		if (empty($data['user_data'])) {
+			redirect('site_user/login');
+		}else{
+			$store = [
+						'id'    => $this->input->post('product_id'), 
+						'name'  => $this->input->post('product_name'), 
+						'price' => $this->input->post('product_price'), 
+						'qty'   => $this->input->post('quantity'), 
+						'product_owner'   => $this->input->post('product_owner'), 
+					 ];
+			$this->cart->insert($store);
+		}
+	}
+	function show_cart(){ 
+		$data['user_data'] = $this->session->userdata('user_data');
+		$data['body_class'] = 'cart page-template';
+		$data['title'] = 'سلة الشراء';
+		if (empty($data['user_data'])) {
+			redirect('site_user/login');
+		}else{
+			$data['user_data'] = $this->session->userdata('user_data');
+			$all = $this->cart->contents();
+			$dic = [];
+			foreach ($all as $val) {
+				if (array_key_exists($val['product_owner'], $dic)) {
+				    array_push($dic[$val['product_owner']], $val);
+				}else{
+					$dic[$val['product_owner']] = [$val];
+				}
+			}
+			// print_r($dic);exit;
+			// print_r(array_values($all));exit;
+			$data['cart_contents'] = $dic;
+			$data['tax'] = get_this('settings',['id'=>1],'tax');
+			$data['sub_total'] = $this->cart->total();
+			$data['total'] = $data['tax'] + $data['sub_total'] ;
+			$data['main_content'] = 'site_user/cart/contents';
+			$this->load->view('site_user/blank',$data);
+		}
+	}
+	function delete_cart(){ 
+		$data['user_data'] = $this->session->userdata('user_data');
+		if (empty($data['user_data'])) {
+			redirect('site_user/login');
+		}else{
+			$data = [
+						'rowid' => $this->input->post('row_id'), 
+						'qty' => 0, 
+					];
+			$this->cart->update($data);
+			// $this->session->set_flashdata('message',notify('تم حذف المنتج بنجاح','success'));
+		}
+	}
+	
+	
+}

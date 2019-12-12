@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+        <title>Wisyst | واي سيست</title>
+		<link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=dubai-bold,dubai,dubai-light" />
+		 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<style type="text/css">
+body {
+background-color: #FFFFFF;
+color: #444444;
+}
+a{
+color:#EF4136;
+text-decoration:none;
+}
+.wicont{
+text-align: center;
+padding: 20px;
+margin: 2% auto auto auto;
+font-family: 'dubai-bold';
+font-size:25px;
+}
+.wicont2{
+text-align: center;
+padding: 20px;
+margin: 2% auto auto auto;
+font-family: 'dubai-light';
+font-size:15px;
+}
+.logo {
+background-image: url("https://wisyst.com/images/error.png");
+background-repeat: no-repeat;
+margin: 5% auto 2% auto;
+width: 350px;
+height: 362px;
+}
+@media only screen and (max-device-width: 700px) {
+    .logo {
+        background-image: url("https://wisyst.com/images/error2.png");
+		width: 200px;
+height: 207px;
+margin: 5% auto 5% auto;
+    }
+	.wicont{
+font-family: 'dubai-bold';
+font-size:20px;
+}
+}
+</style>
+</head>
+<body>
+<div class="logo"></div>
+<div class="wicont">
+نأسف لإزعاجكم، ولكن هذا الموقع قد قام باستهلاك كافة الموارد المخصصة له
+<br />
+وسيعود للعمل تلقائياً فور أن يقل استهلاكه
+</div>
+<div class="wicont2">
+إن كنت صاحب هذا الموقع، فبإمكانك مراسلتنا من خلال <a href="https://ca.wisyst.com" target="_blank">منطقة العميل</a> لمزيد من التفاصيل
+<br />
+<br />
+Hosted with <img src="https://wisyst.com/images/love.png" alt="/"> by <a href="https://wisyst.com" target="_blank">Wisyst</a>
+</div>
+
+</body>
+</html>
